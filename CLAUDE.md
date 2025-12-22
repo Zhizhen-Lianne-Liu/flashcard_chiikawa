@@ -291,7 +291,29 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 - Time tracking per card and per session
 - Automatic progression to next card after grading
 
-❌ **Phase 4-6**: Not implemented (Statistics Dashboard, Import/Export, Polish)
+✅ **Phase 4 (Statistics Dashboard)**: Complete
+- Comprehensive statistics page with real-time data
+- Overview statistics cards:
+  - Total cards, total reviews, time spent
+  - Success rate with color coding
+  - Current streak tracking (days)
+  - Due today and reviewed today counts
+- Charts using Recharts:
+  - Line chart: Cards reviewed over time
+  - Line chart: Accuracy percentage over time
+  - Bar chart: Deck performance (reviews and mastered cards per deck)
+- Time period selector (7, 30, 90, 365 days)
+- Daily statistics tracking:
+  - Automatic updates in `daily_statistics` table on each review
+  - Tracks cards reviewed, time spent, new cards, deck breakdown
+- IPC handlers:
+  - `stats:getOverall` - overall statistics with streak calculation
+  - `stats:getReviewHistory` - historical review data for charts
+  - `stats:getDeckSummary` - per-deck analytics with mastered cards count
+  - `stats:getDaily` - daily statistics for date ranges
+- Per-deck analytics showing total reviews, time spent, average quality, and mastered cards
+
+❌ **Phase 5-6**: Not implemented (Import/Export, Polish)
 
 ## Known Issues & Considerations
 

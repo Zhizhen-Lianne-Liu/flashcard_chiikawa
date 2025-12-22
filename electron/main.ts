@@ -445,7 +445,6 @@ function setupIPCHandlers() {
       .all() as { date: number; cards_reviewed: number }[];
 
     for (const stat of allStats) {
-      const statDate = new Date(stat.date);
       const daysDiff = Math.floor((todayKey - stat.date) / (24 * 60 * 60 * 1000));
 
       if (daysDiff === currentStreak && stat.cards_reviewed > 0) {
@@ -466,8 +465,6 @@ function setupIPCHandlers() {
   });
 
   ipcMain.handle('stats:getDeckSummary', (_, deckId) => {
-    const now = Date.now();
-
     // Total cards in deck
     const totalCards = db
       .prepare('SELECT COUNT(*) as count FROM cards WHERE deck_id = ? AND archived = 0')
