@@ -14,9 +14,6 @@ import {
   Line,
   BarChart,
   Bar,
-  PieChart,
-  Pie,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -26,8 +23,6 @@ import {
 } from 'recharts';
 import { RootState } from '../store';
 import { OverallStatistics, ReviewHistoryEntry, DeckSummary } from '../types/statistics';
-
-const COLORS = ['#1890ff', '#52c41a', '#faad14', '#f5222d', '#722ed1', '#13c2c2'];
 
 function Statistics() {
   const { decks } = useSelector((state: RootState) => state.decks);

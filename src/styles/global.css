@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,16 +7,14 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+  background: #fef6e4;
+  color: #2b2b2b;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 #root {
@@ -22,15 +22,314 @@ code {
   height: 100vh;
 }
 
-/* German character helper styles */
+/* Retro Button Styles */
+.ant-btn {
+  border-radius: 0 !important;
+  font-family: 'Press Start 2P', monospace !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.1s !important;
+  border: 4px solid #000 !important;
+  box-shadow: 4px 4px 0px 0px #000 !important;
+  background: #fff;
+  color: #2b2b2b !important;
+  height: auto !important;
+  padding: 12px 24px !important;
+  font-size: 11px !important;
+}
+
+.ant-btn:hover:not(:disabled) {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px 0px #000 !important;
+}
+
+.ant-btn:active:not(:disabled) {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 0px 0px 0px 0px #000 !important;
+}
+
+.ant-btn-primary {
+  background: #f5cac3 !important;
+  color: #2b2b2b !important;
+  border-color: #000 !important;
+}
+
+.ant-btn-primary:hover:not(:disabled) {
+  background: #f5cac3 !important;
+  filter: brightness(1.1);
+}
+
+.ant-btn-dangerous,
+.ant-btn[danger] {
+  background: #ff6b6b !important;
+  color: white !important;
+  border-color: #000 !important;
+}
+
+.ant-btn-dangerous:hover:not(:disabled),
+.ant-btn[danger]:hover:not(:disabled) {
+  background: #ff5252 !important;
+}
+
+.ant-btn-lg {
+  padding: 16px 32px !important;
+  font-size: 14px !important;
+  box-shadow: 6px 6px 0px 0px #000 !important;
+}
+
+.ant-btn-lg:hover:not(:disabled) {
+  box-shadow: 3px 3px 0px 0px #000 !important;
+}
+
+.ant-btn-text {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Cards */
+.ant-card {
+  border-radius: 0 !important;
+  border: 4px solid #000 !important;
+  box-shadow: 8px 8px 0px 0px #000 !important;
+  background: white !important;
+  transition: all 0.2s !important;
+}
+
+.ant-card-hoverable:hover {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 6px 6px 0px 0px #000 !important;
+}
+
+.ant-card-head {
+  border-bottom: 4px solid #000 !important;
+  background: #fef6e4 !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 12px !important;
+}
+
+/* Inputs */
+.ant-input,
+.ant-input-textarea textarea,
+.ant-select-selector {
+  border-radius: 0 !important;
+  border: 4px solid #000 !important;
+  font-family: 'Courier New', monospace !important;
+  background: white !important;
+  transition: all 0.1s !important;
+  padding: 8px 12px !important;
+}
+
+.ant-input:focus,
+.ant-input-textarea textarea:focus,
+.ant-select-focused .ant-select-selector {
+  border-color: #f5cac3 !important;
+  box-shadow: 0 0 0 4px rgba(245, 202, 195, 0.3) !important;
+  outline: none !important;
+}
+
+/* Tags */
+.ant-tag {
+  border-radius: 0 !important;
+  padding: 4px 12px !important;
+  font-weight: 700 !important;
+  border: 2px solid #000 !important;
+  text-transform: uppercase !important;
+  font-size: 10px !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 2px 2px 0px 0px #000 !important;
+  font-family: 'Press Start 2P', monospace !important;
+  margin: 2px !important;
+}
+
+/* Tables */
+.ant-table {
+  border-radius: 0 !important;
+  border: 4px solid #000 !important;
+  font-family: 'Courier New', monospace !important;
+}
+
+.ant-table-thead > tr > th {
+  background: #fef6e4 !important;
+  font-weight: 700 !important;
+  color: #2b2b2b !important;
+  border-bottom: 4px solid #000 !important;
+  text-transform: uppercase !important;
+  font-size: 10px !important;
+  letter-spacing: 0.5px !important;
+  font-family: 'Press Start 2P', monospace !important;
+}
+
+.ant-table-tbody > tr > td {
+  border-bottom: 2px solid #e5e7eb !important;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: #fef6e4 !important;
+}
+
+/* Progress */
+.ant-progress-outer {
+  border: 4px solid #000 !important;
+}
+
+.ant-progress-bg {
+  background: repeating-linear-gradient(
+    90deg,
+    #f5cac3 0px,
+    #f5cac3 10px,
+    #e8b4b8 10px,
+    #e8b4b8 20px
+  ) !important;
+}
+
+/* Layout */
+.ant-layout {
+  background: #fef6e4 !important;
+}
+
+.ant-layout-sider {
+  background: white !important;
+  border-right: 4px solid #000 !important;
+}
+
+.ant-layout-content {
+  padding: 24px !important;
+  background: #fef6e4 !important;
+}
+
+/* Menu */
+.ant-menu {
+  background: white !important;
+  border: none !important;
+  font-family: 'Press Start 2P', monospace !important;
+}
+
+.ant-menu-item {
+  border-radius: 0 !important;
+  margin: 4px 8px !important;
+  font-weight: 700 !important;
+  font-size: 10px !important;
+}
+
+.ant-menu-item-selected {
+  background: #f5cac3 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0px 0px #000 !important;
+}
+
+/* Modal */
+.ant-modal-content {
+  border-radius: 0 !important;
+  border: 5px solid #000 !important;
+  box-shadow: 12px 12px 0px 0px #000 !important;
+}
+
+.ant-modal-header {
+  border-bottom: 4px solid #000 !important;
+  background: #fef6e4 !important;
+  border-radius: 0 !important;
+}
+
+.ant-modal-title {
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-family: 'Press Start 2P', monospace !important;
+}
+
+/* Statistics */
+.ant-statistic-title {
+  text-transform: uppercase !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  font-family: 'Press Start 2P', monospace !important;
+}
+
+.ant-statistic-content {
+  font-weight: 700 !important;
+  font-size: 28px !important;
+}
+
+/* German character helper */
 .german-char-helper {
   display: flex;
+  align-items: center;
   gap: 8px;
-  margin-top: 8px;
+  padding: 12px;
+  background: #fef6e4;
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0px 0px #000;
+  margin-bottom: 16px;
+}
+
+.german-char-helper span {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .german-char-btn {
-  min-width: 32px;
-  height: 32px;
-  font-weight: bold;
+  min-width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  font-size: 16px !important;
+}
+
+/* Flip button */
+.flip-icon-btn {
+  position: absolute !important;
+  top: 16px !important;
+  left: 16px !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #e5e7eb !important;
+  border: 4px solid #9ca3af !important;
+  color: #6b7280 !important;
+  box-shadow: 2px 2px 0px 0px #9ca3af !important;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.flip-icon-btn:hover {
+  background: #d1d5db !important;
+  transform: translate(1px, 1px) !important;
+  box-shadow: 1px 1px 0px 0px #9ca3af !important;
+}
+
+.flip-icon-btn:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: none !important;
+}
+
+.review-card-container {
+  position: relative;
+  min-height: 450px;
+  padding-top: 60px;
+}
+
+/* Selection */
+::selection {
+  background: #f5cac3;
+  color: #2b2b2b;
+}
+
+/* Focus */
+*:focus-visible {
+  outline: 4px solid #f5cac3;
+  outline-offset: 2px;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
 }

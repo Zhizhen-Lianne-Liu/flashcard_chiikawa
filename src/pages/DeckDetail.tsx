@@ -6,7 +6,6 @@ import {
   Table,
   Button,
   Space,
-  Modal,
   message,
   Tag,
   Input,
@@ -157,7 +156,13 @@ function DeckDetail() {
             cancelText="Cancel"
             okButtonProps={{ danger: true }}
           >
-            <Button type="text" danger icon={<DeleteOutlined />} />
+            <Button
+              type="text"
+              icon={<DeleteOutlined />}
+              style={{ color: '#000' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#ff6b6b'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#000'}
+            />
           </Popconfirm>
         </Space>
       ),

@@ -55,9 +55,6 @@ function App() {
         </Menu>
       </Sider>
       <Layout>
-        <Header style={{ background: '#fff', padding: '0 24px' }}>
-          <h2 style={{ margin: 0 }}>German Learning Flashcards</h2>
-        </Header>
         <Content
           style={{
             padding: 24,

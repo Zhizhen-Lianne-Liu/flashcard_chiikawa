@@ -88,9 +88,11 @@ function DeckList() {
                 >
                   <Button
                     type="text"
-                    danger
                     icon={<DeleteOutlined />}
                     onClick={(e) => e.stopPropagation()}
+                    style={{ color: '#000' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#ff6b6b'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#000'}
                   />
                 </Popconfirm>
               }

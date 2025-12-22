@@ -1,0 +1,42 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#96fbc4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="512" cy="512" r="480" fill="url(#grad1)"/>
+
+  <!-- Flashcard stack effect - back cards -->
+  <rect x="280" y="340" width="464" height="344" rx="32" fill="#ffffff" opacity="0.2" transform="rotate(-5 512 512)"/>
+  <rect x="280" y="340" width="464" height="344" rx="32" fill="#ffffff" opacity="0.3" transform="rotate(-2.5 512 512)"/>
+
+  <!-- Main flashcard -->
+  <rect x="280" y="340" width="464" height="344" rx="32" fill="#ffffff" stroke="#e0e7ff" stroke-width="4"/>
+
+  <!-- Decorative line at top of card -->
+  <rect x="320" y="380" width="384" height="4" rx="2" fill="url(#grad2)"/>
+
+  <!-- Text lines on card (representing content) -->
+  <rect x="320" y="420" width="280" height="20" rx="10" fill="#e0e7ff"/>
+  <rect x="320" y="460" width="340" height="20" rx="10" fill="#e0e7ff"/>
+  <rect x="320" y="500" width="240" height="20" rx="10" fill="#e0e7ff"/>
+
+  <!-- Decorative dots -->
+  <circle cx="350" y="590" r="12" fill="url(#grad2)"/>
+  <circle cx="385" y="590" r="12" fill="url(#grad2)"/>
+  <circle cx="420" y="590" r="12" fill="url(#grad2)"/>
+
+  <!-- Book/learning icon in bottom right -->
+  <g transform="translate(600, 540)">
+    <path d="M 0 0 L 60 0 L 60 80 L 30 65 L 0 80 Z" fill="url(#grad2)" opacity="0.8"/>
+    <path d="M 30 10 L 30 60" stroke="#667eea" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

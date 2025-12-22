@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button, Space, Progress, Empty, Statistic, message } from 'antd';
-import { SmileOutlined, MehOutlined } from '@ant-design/icons';
+import { SmileOutlined, SwapOutlined } from '@ant-design/icons';
 import {
   fetchDueCards,
   toggleAnswer,
@@ -173,85 +173,162 @@ function ReviewSession() {
         </p>
       </div>
 
-      <Card
-        style={{
-          minHeight: '400px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <div
+      <div className="review-card-container">
+        <Button
+          className="flip-icon-btn"
+          onClick={handleToggleAnswer}
+          icon={<SwapOutlined style={{ fontSize: '20px' }} />}
+        />
+
+        <Card
           style={{
-            fontSize: '32px',
-            textAlign: 'center',
-            marginBottom: '24px',
+            minHeight: '400px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '40px',
           }}
         >
-          {currentCard.front}
-        </div>
-
-        {showAnswer && (
           <div
             style={{
-              fontSize: '24px',
+              fontSize: '36px',
               textAlign: 'center',
-              color: '#666',
-              borderTop: '2px solid #eee',
-              paddingTop: '24px',
-              marginTop: '24px',
-              width: '100%',
+              marginBottom: '24px',
+              fontWeight: 700,
+              color: '#2b2b2b',
             }}
           >
-            <p>{currentCard.back}</p>
-            {currentCard.context && (
-              <p style={{ fontSize: '16px', fontStyle: 'italic', marginTop: '16px' }}>
-                {currentCard.context}
-              </p>
-            )}
-            {currentCard.notes && (
-              <p style={{ fontSize: '14px', color: '#999', marginTop: '8px' }}>
-                {currentCard.notes}
-              </p>
-            )}
+            {currentCard.front}
           </div>
-        )}
 
-        <Button
-          type="primary"
-          size="large"
-          onClick={handleToggleAnswer}
-          style={{ marginTop: '32px' }}
-        >
-          {showAnswer ? 'Hide Answer' : 'Show Answer'}
-        </Button>
-
-        {showAnswer && (
-          <Space style={{ marginTop: '32px' }} size="large">
-            <Button danger onClick={() => handleGrade(GradeButton.Again)}>
-              Again
-              <div style={{ fontSize: '11px', opacity: 0.7 }}>1 day</div>
-            </Button>
-            <Button onClick={() => handleGrade(GradeButton.Hard)}>
-              Hard
-              <div style={{ fontSize: '11px', opacity: 0.7 }}>Shorter</div>
-            </Button>
-            <Button type="primary" onClick={() => handleGrade(GradeButton.Good)}>
-              Good
-              <div style={{ fontSize: '11px', opacity: 0.7 }}>Normal</div>
-            </Button>
-            <Button
-              type="primary"
-              style={{ background: '#52c41a', borderColor: '#52c41a' }}
-              onClick={() => handleGrade(GradeButton.Easy)}
+          {showAnswer && (
+            <div
+              style={{
+                fontSize: '24px',
+                textAlign: 'center',
+                color: '#6b7280',
+                borderTop: '4px solid #2b2b2b',
+                paddingTop: '32px',
+                marginTop: '32px',
+                width: '100%',
+              }}
             >
-              Easy
-              <div style={{ fontSize: '11px', opacity: 0.7 }}>Longer</div>
-            </Button>
-          </Space>
-        )}
-      </Card>
+              <p style={{ fontWeight: 600, color: '#2b2b2b' }}>{currentCard.back}</p>
+              {currentCard.context && (
+                <p
+                  style={{
+                    fontSize: '16px',
+                    fontStyle: 'italic',
+                    marginTop: '20px',
+                    color: '#6b7280',
+                  }}
+                >
+                  "{currentCard.context}"
+                </p>
+              )}
+              {currentCard.notes && (
+                <p
+                  style={{
+                    fontSize: '14px',
+                    color: '#9ca3af',
+                    marginTop: '12px',
+                    background: '#fef6e4',
+                    padding: '8px 16px',
+                    border: '2px solid #e5e7eb',
+                    display: 'inline-block',
+                  }}
+                >
+                  💡 {currentCard.notes}
+                </p>
+              )}
+            </div>
+          )}
+
+          {showAnswer && (
+            <div style={{ marginTop: '48px', display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <Button
+                danger
+                size="large"
+                onClick={() => handleGrade(GradeButton.Again)}
+                style={{
+                  minHeight: '80px',
+                  minWidth: '140px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                }}
+              >
+                <span style={{ fontSize: '16px', fontWeight: 700 }}>AGAIN</span>
+                <span style={{ fontSize: '12px', opacity: 0.9 }}>{'< 1 day'}</span>
+              </Button>
+
+              <Button
+                size="large"
+                onClick={() => handleGrade(GradeButton.Hard)}
+                style={{
+                  minHeight: '80px',
+                  minWidth: '140px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  background: '#fcd5ce',
+                  borderColor: '#000',
+                  color: '#2b2b2b',
+                }}
+              >
+                <span style={{ fontSize: '16px', fontWeight: 700 }}>HARD</span>
+                <span style={{ fontSize: '12px', opacity: 0.8 }}>Shorter</span>
+              </Button>
+
+              <Button
+                type="primary"
+                size="large"
+                onClick={() => handleGrade(GradeButton.Good)}
+                style={{
+                  minHeight: '80px',
+                  minWidth: '140px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  background: '#f5cac3',
+                  borderColor: '#000',
+                  color: '#2b2b2b',
+                }}
+              >
+                <span style={{ fontSize: '16px', fontWeight: 700 }}>GOOD</span>
+                <span style={{ fontSize: '12px', opacity: 0.9 }}>Normal</span>
+              </Button>
+
+              <Button
+                size="large"
+                onClick={() => handleGrade(GradeButton.Easy)}
+                style={{
+                  minHeight: '80px',
+                  minWidth: '140px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  background: '#90e0a8',
+                  borderColor: '#000',
+                  color: '#2b2b2b',
+                }}
+              >
+                <span style={{ fontSize: '16px', fontWeight: 700 }}>EASY</span>
+                <span style={{ fontSize: '12px', opacity: 0.9 }}>Longer</span>
+              </Button>
+            </div>
+          )}
+        </Card>
+      </div>
     </div>
   );
 }
