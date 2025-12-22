@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Row, Col, Statistic, Button } from 'antd';
 import {
@@ -11,13 +11,36 @@ import { Link } from 'react-router-dom';
 import { fetchDecks } from '../store/decksSlice';
 import { AppDispatch, RootState } from '../store';
 
+interface OverallStats {
+  totalCards: number;
+  totalReviews: number;
+  totalTimeSpent: number;
+  dueToday: number;
+  reviewedToday: number;
+  currentStreak: number;
+}
+
 function Home() {
   const dispatch = useDispatch<AppDispatch>();
   const { decks } = useSelector((state: RootState) => state.decks);
+  const [stats, setStats] = useState<OverallStats>({
+    totalCards: 0,
+    totalReviews: 0,
+    totalTimeSpent: 0,
+    dueToday: 0,
+    reviewedToday: 0,
+    currentStreak: 0,
+  });
 
   useEffect(() => {
     dispatch(fetchDecks());
+    loadStats();
   }, [dispatch]);
+
+  const loadStats = async () => {
+    const overallStats = await window.electronAPI.stats.getOverall();
+    setStats(overallStats);
+  };
 
   return (
     <div>
@@ -40,7 +63,7 @@ function Home() {
           <Card>
             <Statistic
               title="Cards Due Today"
-              value={0}
+              value={stats.dueToday}
               prefix={<ReadOutlined />}
             />
           </Card>
@@ -48,8 +71,8 @@ function Home() {
         <Col span={8}>
           <Card>
             <Statistic
-              title="Cards Reviewed"
-              value={0}
+              title="Cards Reviewed Today"
+              value={stats.reviewedToday}
               prefix={<TrophyOutlined />}
             />
           </Card>

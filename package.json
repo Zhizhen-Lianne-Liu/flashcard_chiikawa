@@ -55,6 +55,7 @@
   "build": {
     "appId": "com.flashcard-chiikawa.app",
     "productName": "Flashcard Chiikawa",
+    "icon": "build/icon.png",
     "files": [
       "dist/**/*",
       "dist-electron/**/*"
@@ -65,6 +66,7 @@
     },
     "mac": {
       "category": "public.app-category.education",
+      "icon": "build/icon.png",
       "target": [
         "dmg",
         "zip"

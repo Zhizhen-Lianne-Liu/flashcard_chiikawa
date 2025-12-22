@@ -13,11 +13,17 @@ let mainWindow: BrowserWindow | null = null;
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
 
 function createWindow() {
+  // Use .icns for macOS, .png for other platforms
+  const iconPath = process.platform === 'darwin'
+    ? path.join(__dirname, '../build/icon.icns')
+    : path.join(__dirname, '../build/icon.png');
+
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
     minWidth: 800,
     minHeight: 600,
+    icon: iconPath,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,

@@ -14,7 +14,7 @@ import CardEditor from './pages/CardEditor';
 import ReviewSession from './pages/ReviewSession';
 import Statistics from './pages/Statistics';
 
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 function App() {
   return (
