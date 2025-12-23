@@ -80,7 +80,7 @@ function Home() {
       </Row>
 
       <Card title="Quick Actions">
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <Link to="/review" style={{ flex: 1 }}>
             <Button type="primary" size="large" block icon={<ReadOutlined />}>
               Start Review Session

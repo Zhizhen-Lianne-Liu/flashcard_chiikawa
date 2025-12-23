@@ -261,6 +261,7 @@ body {
   gap: 8px;
   padding: 12px;
   background: #fef6e4;
+  flex-wrap: wrap;
   border: 4px solid #000;
   box-shadow: 4px 4px 0px 0px #000;
   margin-bottom: 16px;

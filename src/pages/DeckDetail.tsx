@@ -218,7 +218,7 @@ function DeckDetail() {
 
   return (
     <div>
-      <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/decks')}>
             Back to Decks
@@ -252,7 +252,7 @@ function DeckDetail() {
       )}
 
       <Card>
-        <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
           <Input
             placeholder="Search cards..."
             prefix={<SearchOutlined />}
