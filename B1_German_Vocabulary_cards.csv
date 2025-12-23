@@ -1,0 +1,23 @@
+front,back,context,notes,tags
+sich beschweren,to complain,Sie beschwert sich über den schlechten Service.,"Reflexive verb, requires accusative reflexive pronoun",verb;B1
+vereinbaren,"to agree on, to arrange",Wir haben einen Termin für nächste Woche vereinbart.,"Regular verb, separable prefix ver-",verb;B1
+sich vorbereiten,to prepare (oneself),Ich bereite mich auf die Prüfung vor.,"Reflexive, separable prefix: vor-",verb;B1
+beantragen,to apply for,Er hat einen neuen Reisepass beantragt.,Inseparable prefix be-,verb;B1
+verzichten,"to renounce, to do without",Sie verzichtet auf Zucker in ihrem Kaffee.,"Takes ""auf"" + accusative",verb;B1
+"die Unterkunft, -künfte",accommodation,Wir suchen noch eine günstige Unterkunft für unseren Urlaub.,"die, plural: -künfte, feminine",noun;feminine;B1;travel
+"der Umzug, -züge","move, relocation",Der Umzug in die neue Wohnung war sehr anstrengend.,"der, plural: -züge, masculine",noun;masculine;B1
+"die Bewerbung, -en",application,Ich habe meine Bewerbung für die Stelle geschickt.,"die, plural: -en, feminine",noun;feminine;B1;work
+"das Missverständnis, -se",misunderstanding,Das war ein großes Missverständnis zwischen uns.,"das, plural: -se, neuter",noun;neuter;B1
+"die Erfahrung, -en",experience,Sie hat viel Erfahrung in diesem Bereich.,"die, plural: -en, feminine",noun;feminine;B1;work
+"der Einfluss, -flüsse",influence,Das Wetter hat einen großen Einfluss auf meine Stimmung.,"der, plural: -flüsse, masculine",noun;masculine;B1
+"die Gelegenheit, -en",opportunity,"Das ist eine gute Gelegenheit, Deutsch zu üben.","die, plural: -en, feminine",noun;feminine;B1
+selbstständig,"independent, self-employed",Sie arbeitet selbstständig als Übersetzerin.,"Adjective, can also mean autonomous",adjective;B1;work
+zuverlässig,reliable,Er ist ein sehr zuverlässiger Mitarbeiter.,Adjective,adjective;B1
+anstrengend,"exhausting, strenuous",Der Marathon war sehr anstrengend.,Present participle used as adjective,adjective;B1
+durchschnittlich,average,Das durchschnittliche Einkommen ist gestiegen.,"Adjective, from ""Durchschnitt"" (average)",adjective;B1
+im Voraus,in advance,Sie müssen im Voraus bezahlen.,"Fixed expression, dative",B1
+es lohnt sich,it's worth it,"Es lohnt sich, früh aufzustehen.",Reflexive impersonal expression,verb;B1
+Rücksicht nehmen auf,"to consider, to take into account",Man muss Rücksicht auf andere nehmen.,"Fixed expression with ""auf"" + accusative",B1
+sich kümmern um,"to take care of, to look after",Ich kümmere mich um die Kinder.,"Reflexive verb with ""um"" + accusative",verb;B1
+abhängig sein von,to depend on,Das ist abhängig vom Wetter.,"Adjective + ""von"" + dative",adjective;B1
+auf jeden Fall,"in any case, definitely",Ich komme auf jeden Fall zur Party.,"Fixed expression, adverbial",B1

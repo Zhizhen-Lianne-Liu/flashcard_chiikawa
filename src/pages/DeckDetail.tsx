@@ -10,6 +10,7 @@ import {
   Tag,
   Input,
   Popconfirm,
+  Dropdown,
 } from 'antd';
 import {
   ArrowLeftOutlined,
@@ -17,6 +18,9 @@ import {
   DeleteOutlined,
   PlusOutlined,
   SearchOutlined,
+  UploadOutlined,
+  DownloadOutlined,
+  MoreOutlined,
 } from '@ant-design/icons';
 import { fetchCardsByDeck, deleteCard } from '../store/cardsSlice';
 import { fetchDecks } from '../store/decksSlice';
@@ -77,6 +81,34 @@ function DeckDetail() {
       setSelectedRowKeys([]);
     } catch (error) {
       message.error('Failed to delete cards');
+    }
+  };
+
+  const handleExport = async () => {
+    try {
+      const result = await window.electronAPI.importExport.exportCSV(Number(deckId));
+      if (result.success) {
+        message.success(`Exported ${result.cardsExported} cards successfully!`);
+      } else if (!result.cancelled) {
+        message.error(result.error || 'Export failed');
+      }
+    } catch (error) {
+      message.error('Failed to export cards');
+    }
+  };
+
+  const handleImport = async () => {
+    try {
+      const result = await window.electronAPI.importExport.importCSV(Number(deckId));
+      if (result.success) {
+        message.success(`Imported ${result.cardsImported} cards successfully!`);
+        dispatch(fetchCardsByDeck(Number(deckId)));
+        dispatch(fetchDecks());
+      } else if (!result.cancelled) {
+        message.error(result.error || 'Import failed');
+      }
+    } catch (error) {
+      message.error('Failed to import cards');
     }
   };
 
@@ -169,6 +201,21 @@ function DeckDetail() {
     },
   ];
 
+  const deckToolsMenuItems = [
+    {
+      key: 'import',
+      icon: <UploadOutlined />,
+      label: 'Import from CSV',
+      onClick: handleImport,
+    },
+    {
+      key: 'export',
+      icon: <DownloadOutlined />,
+      label: 'Export to CSV',
+      onClick: handleExport,
+    },
+  ];
+
   return (
     <div>
       <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -181,13 +228,21 @@ function DeckDetail() {
           </h1>
           <Tag color={deck?.color || 'blue'}>{filteredCards.length} cards</Tag>
         </div>
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={() => navigate(`/editor?deckId=${deckId}`)}
-        >
-          Add Card
-        </Button>
+        <Space>
+          <Dropdown
+            menu={{ items: deckToolsMenuItems }}
+            trigger={['click']}
+          >
+            <Button icon={<MoreOutlined />} />
+          </Dropdown>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => navigate(`/editor?deckId=${deckId}`)}
+          >
+            Add Card
+          </Button>
+        </Space>
       </div>
 
       {deck?.description && (

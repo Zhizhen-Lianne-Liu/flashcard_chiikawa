@@ -1,6 +1,7 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 import { initDatabase, closeDatabase, getDatabase } from './database/db.js';
 import { calculateSM2 } from './algorithms/sm2.js';
 
@@ -577,4 +578,213 @@ function setupIPCHandlers() {
       .all(cardId);
     return tags;
   });
+
+  // Export/Import handlers
+  ipcMain.handle('export:csv', async (_, deckId) => {
+    if (!mainWindow) return { success: false, error: 'No window available' };
+
+    try {
+      // Get deck info
+      const deck = db
+        .prepare('SELECT * FROM decks WHERE id = ?')
+        .get(deckId) as any;
+
+      if (!deck) {
+        return { success: false, error: 'Deck not found' };
+      }
+
+      // Get all cards from the deck
+      const cards = db
+        .prepare(
+          `SELECT c.*, GROUP_CONCAT(t.name, ';') as tags
+           FROM cards c
+           LEFT JOIN card_tags ct ON c.id = ct.card_id
+           LEFT JOIN tags t ON ct.tag_id = t.id
+           WHERE c.deck_id = ? AND c.archived = 0
+           GROUP BY c.id`
+        )
+        .all(deckId) as any[];
+
+      if (cards.length === 0) {
+        return { success: false, error: 'No cards to export' };
+      }
+
+      // Show save dialog
+      const { filePath } = await dialog.showSaveDialog(mainWindow, {
+        title: 'Export Cards to CSV',
+        defaultPath: `${deck.name.replace(/[^a-z0-9]/gi, '_')}_cards.csv`,
+        filters: [{ name: 'CSV Files', extensions: ['csv'] }],
+      });
+
+      if (!filePath) {
+        return { success: false, cancelled: true };
+      }
+
+      // Create CSV content
+      const headers = ['front', 'back', 'context', 'notes', 'tags'];
+      const rows = cards.map((card) => [
+        escapeCsv(card.front),
+        escapeCsv(card.back),
+        escapeCsv(card.context || ''),
+        escapeCsv(card.notes || ''),
+        escapeCsv(card.tags || ''),
+      ]);
+
+      const csv = [headers.join(','), ...rows.map((row) => row.join(','))].join('\n');
+
+      // Write to file
+      fs.writeFileSync(filePath, csv, 'utf-8');
+
+      return { success: true, filePath, cardsExported: cards.length };
+    } catch (error) {
+      console.error('Export error:', error);
+      return { success: false, error: String(error) };
+    }
+  });
+
+  ipcMain.handle('import:csv', async (_, deckId) => {
+    if (!mainWindow) return { success: false, error: 'No window available' };
+
+    try {
+      // Show open dialog
+      const { filePaths } = await dialog.showOpenDialog(mainWindow, {
+        title: 'Import Cards from CSV',
+        filters: [{ name: 'CSV Files', extensions: ['csv'] }],
+        properties: ['openFile'],
+      });
+
+      if (!filePaths || filePaths.length === 0) {
+        return { success: false, cancelled: true };
+      }
+
+      const filePath = filePaths[0];
+      const csvContent = fs.readFileSync(filePath, 'utf-8');
+
+      // Parse CSV (simple parser)
+      const lines = csvContent.split('\n').filter((line) => line.trim());
+      if (lines.length < 2) {
+        return { success: false, error: 'CSV file is empty or invalid' };
+      }
+
+      const headers = lines[0].split(',').map((h) => h.trim().toLowerCase());
+      const frontIdx = headers.indexOf('front');
+      const backIdx = headers.indexOf('back');
+      const contextIdx = headers.indexOf('context');
+      const notesIdx = headers.indexOf('notes');
+      const tagsIdx = headers.indexOf('tags');
+
+      if (frontIdx === -1 || backIdx === -1) {
+        return { success: false, error: 'CSV must have "front" and "back" columns' };
+      }
+
+      let imported = 0;
+      const tagCache = new Map<string, number>();
+
+      // Get all existing tags
+      const existingTags = db.prepare('SELECT id, name FROM tags').all() as any[];
+      existingTags.forEach((tag) => tagCache.set(tag.name.toLowerCase(), tag.id));
+
+      for (let i = 1; i < lines.length; i++) {
+        const values = parseCsvLine(lines[i]);
+        if (values.length < 2) continue;
+
+        const front = values[frontIdx]?.trim();
+        const back = values[backIdx]?.trim();
+        if (!front || !back) continue;
+
+        const context = contextIdx >= 0 ? values[contextIdx]?.trim() : null;
+        const notes = notesIdx >= 0 ? values[notesIdx]?.trim() : null;
+        const tagNames = tagsIdx >= 0 ? values[tagsIdx]?.trim() : null;
+
+        // Insert card
+        const result = db
+          .prepare(
+            `INSERT INTO cards (deck_id, front, back, context, notes, created_at, updated_at, archived)
+             VALUES (?, ?, ?, ?, ?, ?, ?, 0)`
+          )
+          .run(deckId, front, back, context, notes, Date.now(), Date.now());
+
+        const cardId = Number(result.lastInsertRowid);
+
+        // Create initial card state
+        const now = Date.now();
+        db.prepare(
+          `INSERT INTO card_states (card_id, easiness_factor, interval, repetitions, next_review_date, last_reviewed_at, total_reviews, total_time_spent, created_at)
+           VALUES (?, 2.5, 0, 0, ?, NULL, 0, 0, ?)`
+        ).run(cardId, now, now);
+
+        // Handle tags
+        if (tagNames) {
+          const tags = tagNames.split(';').map((t) => t.trim()).filter(Boolean);
+          for (const tagName of tags) {
+            const lowerName = tagName.toLowerCase();
+            let tagId = tagCache.get(lowerName);
+
+            if (!tagId) {
+              // Create new tag
+              const tagResult = db
+                .prepare('INSERT INTO tags (name, color, created_at) VALUES (?, ?, ?)')
+                .run(tagName, '#1890ff', Date.now());
+              tagId = Number(tagResult.lastInsertRowid);
+              tagCache.set(lowerName, tagId);
+            }
+
+            // Link tag to card
+            db.prepare('INSERT OR IGNORE INTO card_tags (card_id, tag_id) VALUES (?, ?)').run(
+              cardId,
+              tagId
+            );
+          }
+        }
+
+        imported++;
+      }
+
+      // Update deck timestamp
+      db.prepare('UPDATE decks SET updated_at = ? WHERE id = ?').run(Date.now(), deckId);
+
+      return { success: true, cardsImported: imported };
+    } catch (error) {
+      console.error('Import error:', error);
+      return { success: false, error: String(error) };
+    }
+  });
+}
+
+// Helper functions for CSV handling
+function escapeCsv(value: string): string {
+  if (!value) return '';
+  const str = String(value);
+  if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+    return `"${str.replace(/"/g, '""')}"`;
+  }
+  return str;
+}
+
+function parseCsvLine(line: string): string[] {
+  const result: string[] = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    const nextChar = line[i + 1];
+
+    if (char === '"') {
+      if (inQuotes && nextChar === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      result.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current);
+
+  return result.map((v) => v.trim());
 }

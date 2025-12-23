@@ -1,0 +1,52 @@
+front,back,context,notes,tags
+die Katze,the cat,Die Katze schläft auf dem Sofa.,feminine noun - plural: die Katzen,noun;feminine;A1;family
+der Hund,the dog,Der Hund bellt laut.,masculine noun - plural: die Hunde,noun;masculine;A1;family
+das Haus,the house,Das Haus ist sehr groß.,neuter noun - plural: die Häuser,noun;neuter;A1;travel
+essen,to eat,Ich esse gerne Pizza.,irregular verb - isst/aß/gegessen,verb;A1;food
+trinken,to drink,Wir trinken Wasser.,irregular verb - trinkt/trank/getrunken,verb;A1;food
+schön,beautiful,Das Wetter ist heute schön.,adjective,adjective;A1
+groß,big,Der Elefant ist groß.,adjective - comparative: größer,adjective;A1
+klein,small,Die Maus ist klein.,adjective - comparative: kleiner,adjective;A1
+schnell,fast,Das Auto fährt schnell.,adjective/adverb,adjective;A1;travel
+langsam,slow,Die Schildkröte ist langsam.,adjective/adverb,adjective;A1
+arbeiten,to work,Ich arbeite im Büro.,regular verb - arbeitet/arbeitete/gearbeitet,verb;A1;work
+lernen,to learn,Wir lernen Deutsch.,regular verb - lernt/lernte/gelernt,verb;A1
+sprechen,to speak,Er spricht drei Sprachen.,irregular verb - spricht/sprach/gesprochen,verb;A1
+verstehen,to understand,Ich verstehe die Frage nicht.,irregular verb - versteht/verstand/verstanden,verb;A2
+das Buch,the book,Ich lese ein interessantes Buch.,neuter noun - plural: die Bücher,noun;neuter;A1
+der Tisch,the table,Der Tisch ist aus Holz.,masculine noun - plural: die Tische,noun;masculine;A1
+die Tür,the door,Bitte schließ die Tür.,feminine noun - plural: die Türen,noun;feminine;A1
+das Fenster,the window,Das Fenster ist offen.,neuter noun - plural: die Fenster,noun;neuter;A1
+gehen,to go,Wir gehen ins Kino.,irregular verb - geht/ging/gegangen,verb;A1;travel
+kommen,to come,Kommst du zur Party?,irregular verb - kommt/kam/gekommen,verb;A1
+kaufen,to buy,Ich kaufe Brot im Supermarkt.,regular verb - kauft/kaufte/gekauft,verb;A1;food
+verkaufen,to sell,Er verkauft sein altes Auto.,regular verb - verkauft/verkaufte/verkauft,verb;A2;work
+die Arbeit,the work,Die Arbeit macht Spaß.,feminine noun - no plural,noun;feminine;A1;work
+der Chef,the boss,Der Chef ist heute nicht da.,masculine noun - plural: die Chefs,noun;masculine;A2;work
+die Kollegin,the colleague (f),Meine Kollegin ist sehr nett.,feminine noun - plural: die Kolleginnen,noun;feminine;A2;work
+der Kollege,the colleague (m),Der Kollege hilft mir.,masculine noun - plural: die Kollegen,noun;masculine;A2;work
+das Büro,the office,Ich arbeite im Büro.,neuter noun - plural: die Büros,noun;neuter;A1;work
+die E-Mail,the email,Ich schreibe eine E-Mail.,feminine noun - plural: die E-Mails,noun;feminine;A1;work
+das Telefon,the telephone,Das Telefon klingelt.,neuter noun - plural: die Telefone,noun;neuter;A1
+anrufen,to call,Ich rufe dich später an.,separable verb - ruft an/rief an/angerufen,verb;A1
+die Stadt,the city,Berlin ist eine große Stadt.,feminine noun - plural: die Städte,noun;feminine;A1;travel
+das Land,the country,Deutschland ist ein schönes Land.,neuter noun - plural: die Länder,noun;neuter;A1;travel
+der Flughafen,the airport,Der Flughafen ist weit weg.,masculine noun - plural: die Flughäfen,noun;masculine;A2;travel
+die Reise,the trip,Die Reise war fantastisch.,feminine noun - plural: die Reisen,noun;feminine;A2;travel
+fahren,to drive,Ich fahre mit dem Auto.,irregular verb - fährt/fuhr/gefahren,verb;A1;travel
+fliegen,to fly,Wir fliegen nach Spanien.,irregular verb - fliegt/flog/geflogen,verb;A1;travel
+das Restaurant,the restaurant,Das Restaurant ist sehr gut.,neuter noun - plural: die Restaurants,noun;neuter;A1;food
+der Kellner,the waiter,Der Kellner bringt das Essen.,masculine noun - plural: die Kellner,noun;masculine;A2;food
+die Speisekarte,the menu,Kann ich die Speisekarte haben?,feminine noun - plural: die Speisekarten,noun;feminine;A2;food
+bestellen,to order,Ich bestelle einen Kaffee.,regular verb - bestellt/bestellte/bestellt,verb;A2;food
+bezahlen,to pay,Wir bezahlen zusammen.,regular verb - bezahlt/bezahlte/bezahlt,verb;A1;food
+lecker,delicious,Das Essen schmeckt lecker.,adjective,adjective;A1;food
+teuer,expensive,Das Hotel ist zu teuer.,adjective,adjective;A1
+billig,cheap,Die Schuhe sind billig.,adjective,adjective;A2
+wichtig,important,Das ist sehr wichtig.,adjective,adjective;A2
+schwierig,difficult,Die Prüfung war schwierig.,adjective,adjective;A2
+einfach,easy,Die Aufgabe ist einfach.,adjective,adjective;A2
+interessant,interesting,Der Film war interessant.,adjective,adjective;A2
+langweilig,boring,Das Buch ist langweilig.,adjective,adjective;A2
+mögen,to like,Ich mag Schokolade.,modal verb - mag/mochte/gemocht,verb;A1;food
+wollen,to want,Ich will nach Hause gehen.,modal verb - will/wollte/gewollt,verb;A2

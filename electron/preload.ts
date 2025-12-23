@@ -44,10 +44,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   // Import/Export operations
   importExport: {
-    importCSV: (filePath: string, deckId: number) =>
-      ipcRenderer.invoke('import:csv', filePath, deckId),
-    exportCSV: (deckId: number, filePath: string) =>
-      ipcRenderer.invoke('export:csv', deckId, filePath),
+    importCSV: (deckId: number) => ipcRenderer.invoke('import:csv', deckId),
+    exportCSV: (deckId: number) => ipcRenderer.invoke('export:csv', deckId),
   },
 
   // Tag operations
